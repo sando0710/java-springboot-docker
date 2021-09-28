@@ -94,11 +94,11 @@ public class RootController {
 //  model.addAttribute("",edit);
 	
 	// 一件データを取得し、フォーム内に表示
-    @GetMapping("/edit/{id}")
+    @GetMapping("{id}/edit")
     public String edit(@PathVariable String id, Model model) {
         Optional<ItemForm> editForm = itemrepository.findById(id);
         model.addAttribute("editForm", editForm);
-        return "root/edit";
+        return "{id}/edit";
     }
 
 	
