@@ -1,0 +1,122 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポートフォリオサイト</title>
+<link rel="stylesheet" media="all" th:href="@{/css/ress.min.css}" />
+<link rel="stylesheet" media="all" th:href="@{/css/style.css}" />
+<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/js/style.js}"></script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col span-12">
+					<div class="head">
+						<h1>
+							<a th:href="@{/}">PORTFOLIO</a>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col span-12">
+					<nav>
+						<div id="open">
+							<img th:src="@{/img/button.png}">
+						</div>
+						<div id="close">
+							<img th:src="@{/img/button2.png}">
+						</div>
+						<div id="navi">
+							<ul>
+								<li><a th:href="@{/}">一覧情報</a></li>
+								<li><a th:href="@{/edit}">登録情報編集</a></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="mainimg">
+		<img th:src="@{/img/subimg2.jpg}" alt="お問い合わせ画像">
+	</div>
+	<main>
+		<article>
+			<div class="container">
+				<div class="row">
+					<div class="col span-12">
+						<div class="breadcrumb">
+							<ul>
+								<li><a th:href="@{/demo}">ホーム</a> > 登録内容編集</li>
+							</ul>
+						</div>
+
+						<th:block th:if="message != null">
+							<h2 th:class="msg" th:text="${message}"></h2>
+						</th:block>
+
+						<h2 class="underline">編集フォーム</h2>
+						<form th:action="@{/{id}/edit}" th:object="${itemForm}"
+							method="get">
+							<p>
+								<label for="itemName">商品名</label> <input class="full-width"
+									type="text" id="itemname" name="itemname" maxlength="10"
+									th:field="*{itemname}"> <span
+									th:if="${#fields.hasErrors('itemname')}" th:errors="*{itemname}"
+									th:class="msg"></span>
+							</p>
+							<p>
+								<label for="number">個数</label> <input class="full-width"
+									type="text" id="number" name="number" th:field="*{number}"><span
+									th:if="${#fields.hasErrors('number')}" th:errors="*{number}"
+									th:class="msg"></span>
+							</p>
+							<p>
+								<label for="price">値段</label>
+								<textarea class="full-width" id="price" name="price"
+									th:field="*{price}"></textarea>
+								<span th:if="${#fields.hasErrors('price')}"
+									th:errors="*{price}" th:class="msg"></span>
+							</p>
+							<p>
+							    <label for="agreement"><a href="#">※ 情報セキュリティ基本方針・特定個人情報取扱方針を遵守します</a></label>
+      								<div class="check_posi">
+        							<input class="check" type="checkbox" name="agreement" id="agreement" value="1" required>	← 再度ここをcheck
+      								</div>
+							</p>
+							<p>
+								<input class="button" type="submit" value="更新">
+							</p>
+						</form>
+						<div class="pull-right">
+       					 <a class="btn btn-link" href="/list">一覧画面へ</a>
+      					</div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col span-12">
+					<h5>お知らせ</h5>
+					<p>クーリング・オフは不可です。</p>
+					<p>回答にかなりお時間頂きます。予めご了承ください。</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<p id="pagetop">
+		<a href="#">TOP</a>
+	</p>
+</body>
+</html>

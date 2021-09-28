@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <title>ここはタイトルです</title>
+  <script type="text/javascript">
+      alert('こんにちわ1');
+      alert('こんにちわ2');
+
+      // イベントハンドラのonloadにより、html読み込み後にファンクションをコール
+      window.onload = function() {
+          document.getElementById('dev01');
+          var aaa = document.getElementById('dev01');
+          aaa.innerText = 'ここはDivですぅぅぅぅぅ';
+      }
+
+      //普通のファンクション
+      function test() {
+        alert("button clickを検知");
+        var elm = document.getElementById('dev01');
+
+        elm.innerHTML = 'test <span style=color: #0000ff;">ボタン押しましたね？😱</span>';
+        elm.style.background = '#ffcccc';
+
+        alert("あなたは呪われてしまった!!ボタンが押せなくなった!!");
+
+        var btn = document.getElementById('test_button');
+        btn.disabled = true;
+      }
+
+      // 問題：別のDivをDiv02にして、別のファンクションで同じように表示させてみよう〜！！
+  </script>
+  </head>
+  <body>
+      ここはBodyです
+      <div id="dev01">
+          ここはDivです
+      </div>
+      <button id="test_button" onclick="test()">change</button>
+  </body>
+</html>

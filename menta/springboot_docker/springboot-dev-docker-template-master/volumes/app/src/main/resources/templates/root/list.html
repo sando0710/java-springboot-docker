@@ -1,0 +1,116 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポートフォリオサイト</title>
+<link rel="stylesheet" media="all" th:href="@{/css/ress.min.css}" />
+<link rel="stylesheet" media="all" th:href="@{/css/style.css}" />
+<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/js/style.js}"></script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col span-12">
+					<div class="head">
+						<h1>
+							<a th:href="@{/}">PORTFOLIO</a>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col span-12">
+					<nav>
+						<div id="open">
+							<img th:src="@{/img/button.png}">
+						</div>
+						<div id="close">
+							<img th:src="@{/img/button2.png}">
+						</div>
+						<div id="navi">
+							<ul>
+								<li><a th:href="@{/}">ホーム</a></li>
+								<li><a th:href="@{/item}">登録情報一覧</a></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="mainimg">
+		<img th:src="@{/img/subimg.jpg}" alt="お問い合わせ画像">
+	</div>
+	<main>
+		<article>
+			<div class="container">
+				<div class="row">
+					<div class="col span-12">
+						<div class="breadcrumb">
+							<ul>
+								<li><a th:href="@{/demo}">ホーム</a> > 一覧情報</li>
+							</ul>
+						</div>
+
+						<th:block th:if="message != null">
+							<h2 th:class="msg" th:text="${message}"></h2>
+						</th:block>
+
+						<h2 class="underline">登録アイテム一覧</h2>
+						<table class="table">
+       				    <thead>
+       				    <tr>
+       				      <th>ID</th>		
+      			          <th>商品名</th>
+          				  <th>個数</th>
+         			      <th>価格</th>
+    			          <th>参照</th>
+  			              <th>編集</th>
+         				  <th>!! 削除 !!</th>
+          				</tr>
+        				</thead>
+        <tbody>
+          <tr th:each="itemForm:${itemlist}" th:object="${itemForm}" class="align-middle">
+            <td th:text="*{id}"></td>
+            <td th:text="*{itemname}"></td>
+            <td th:text="*{number}"></td>
+            <td th:text="*{price}"></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/item/{id}/show(id=*{id})}">参照</a></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/{id}/edit(id=*{id})}">編集</a></td>
+            <td>
+              <form th:action="@{/item/{id}/delete(id=*{id})}" th:method="delete">
+                <input class="btn btn-default btn-xs" type="submit" value="削除" />
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+	  <a class="btn btn-default" href="/itemForm/new">新規作成はこちらから</a>
+					</div>
+				</div>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col span-12">
+					<h5>お知らせ</h5>
+					<p>クーリング・オフは不可です。</p>
+					<p>回答にかなりお時間頂きます。予めご了承ください。</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<p id="pagetop">
+		<a href="#">TOP</a>
+	</p>
+</body>
+</html>
