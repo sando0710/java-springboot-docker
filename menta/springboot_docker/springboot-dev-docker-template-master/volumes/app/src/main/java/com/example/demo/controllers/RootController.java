@@ -45,12 +45,21 @@ public class RootController {
 	
 	
 	
-
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public String index() {
 		return "root/index";
 	}
 
+
+	/**
+	 * 
+	 * @param inquiryForm
+	 * @return
+	 */
 	@GetMapping("/form")
 	public String form(InquiryForm inquiryForm) {
 		return "root/form";
@@ -61,16 +70,31 @@ public class RootController {
 //		return "root/form2";
 //	}
 //	
+	/**
+	 * 
+	 * @param inquiryForm3
+	 * @return
+	 */
 	@GetMapping ("/form3")
 	public String form3(InquiryForm3 inquiryForm3) {
 		return "root/form3";
 	}
 	
+	/**
+	 * 
+	 * @param itemForm
+	 * @return
+	 */
 	@GetMapping ("/item")
 	public String item(ItemForm itemForm) {
 		return "root/item";
 	}
 	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping ("/list")
 	public String list(Model model) { 
         List<ItemForm> itemlist = itemrepository.findAll();
@@ -93,6 +117,12 @@ public class RootController {
 //	 Edit edit = itemrepository.findById(id);
 //  model.addAttribute("",edit);
 	
+/**
+ * 
+ * @param id
+ * @param model
+ * @return
+ */
 	// 一件データを取得し、フォーム内に表示
     @GetMapping("{id}/edit")
     public String edit(@PathVariable String id, Model model) {
@@ -101,7 +131,13 @@ public class RootController {
         return "{id}/edit";
     }
 
-	
+	/**
+	 * 
+	 * @param inquiryForm
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/form")
 	public String form(@Validated InquiryForm inquiryForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -129,7 +165,13 @@ public class RootController {
 //		model.addAttribute("message", "お問い合わせを受け付けました。");
 //		return "root/form2";
 //	}
-	
+	/**
+	 *
+	 * @param inquiryForm3
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/form3")
 	public String form3(@Validated InquiryForm3 inquiryForm3, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -143,7 +185,14 @@ public class RootController {
 		model.addAttribute("message", "お問い合わせを受け付けました。");
 		return "root/form3";
 	}
-	
+
+	/**
+	 * 
+	 * @param itemForm
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/item")
 	public String item(@Validated ItemForm itemForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -158,12 +207,26 @@ public class RootController {
 		return "root/item";
 	}
 	
+	/**
+	 * 
+	 * @param itemForm
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/list")
 	public String list(@ModelAttribute ItemForm itemForm, BindingResult bindingResult, Model model) {
 		itemrepository.save(itemForm);
 		return "redirect:/list";
 	}
 	
+	/**
+	 * 
+	 * @param itemForm
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/{id}/edit")
     public String edit(@ModelAttribute ItemForm itemForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -176,6 +239,12 @@ public class RootController {
 		model.addAttribute("message", "編集が完了しました。");        
         return "item/{id}/edit";
     }
+
+		/**
+		 * 
+		 * @param id
+		 * @return
+		 */
 	// 商品情報を一件削除し、リダイレクト
     @DeleteMapping("delete/{id}")
     public String delete(@PathVariable int id) {
