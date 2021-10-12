@@ -252,6 +252,6 @@ public class RootController {
 	public String delete(@PathVariable String id) {
 		itemrepository.deleteById(id);
 		
-		return "redirect:root/list";
+		return "root/list";
 	}
 }
