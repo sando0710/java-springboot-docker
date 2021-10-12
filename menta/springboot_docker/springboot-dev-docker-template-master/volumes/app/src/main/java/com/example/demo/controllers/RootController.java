@@ -217,8 +217,12 @@ public class RootController {
 	 */
 	@PostMapping("/list")
 	public String list(@ModelAttribute ItemForm itemForm, BindingResult bindingResult, Model model) {
-		itemrepository.save(itemForm);
-		return "redirect:/list";
+		if (bindingResult.hasErrors()) {
+				return "root/list";
+		}
+		itemrepository.saveAndFlush(itemForm);
+		itemrepository.clear();
+		return "root/list";
 	}
 	
 	/**
