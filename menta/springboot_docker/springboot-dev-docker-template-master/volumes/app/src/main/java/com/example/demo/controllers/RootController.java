@@ -248,10 +248,10 @@ public class RootController {
 	 * @return
 	 */
 	// 商品情報を一件削除し、リダイレクト
-	@DeleteMapping("delete/{id}")
-	public String delete(@PathVariable int id) {
-		itemrepository.deleteAllInBatch();
-		;
+	@PostMapping("/{id}/delete")
+	public String delete(@PathVariable String id) {
+		itemrepository.deleteById(id);
+		
 		return "redirect:root/list";
 	}
 }
