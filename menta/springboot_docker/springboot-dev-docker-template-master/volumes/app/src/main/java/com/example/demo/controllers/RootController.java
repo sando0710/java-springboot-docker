@@ -118,17 +118,18 @@ public class RootController {
 //  model.addAttribute("",edit);
 	
 /**
- * 
+ * アイテム情報主キー検索
  * @param id
- * @param model
- * @return
+ * 
+ * 
  */
-	// 一件データを取得し、フォーム内に表示
+	// 指定したアイテム情報のIDを検索し、itemTableに格納
+	// itemrepositoryで取得した情報をmodel.addAttributeで画面に渡す
     @GetMapping("{id}/edit")
     public String edit(@PathVariable String id, Model model) {
-        Optional<ItemForm> editForm = itemrepository.findById(id);
-        model.addAttribute("editForm", editForm);
-        return "{id}/edit";
+        Optional<ItemForm> itemTable = itemrepository.findById(id);
+        model.addAttribute("itemTable", itemTable);
+        return "root/edit";
     }
 
 	/**
