@@ -66,6 +66,7 @@
 						<h2 class="underline">編集フォーム</h2>
 						<form th:action="@{/{id}/edit}" th:object="${itemForm}"
 							method="get">
+							<input type="hidden" th:field="*{id}" />
 							<p>
 								<label for="itemName">商品名</label> <input class="full-width"
 									type="text" id="itemname" name="itemname" maxlength="10"
