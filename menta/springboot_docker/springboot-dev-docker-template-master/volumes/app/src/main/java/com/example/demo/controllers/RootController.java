@@ -249,9 +249,9 @@ public class RootController {
 	 */
 	// 商品情報を一件削除し、リダイレクト
 	@PostMapping("/{id}/delete")
-	public String delete(@PathVariable String id) {
+	public String delete(@PathVariable String id,Model model) {
 		itemrepository.deleteById(id);
-		
+		model.addAttribute("message", "削除が完了しました。")
 		return "root/list";
 	}
 }
