@@ -40,8 +40,8 @@ public class RootController {
 	@Autowired // @Autowiredを書くことで、他クラスとの繋がりを宣言する記述が大幅に減る
 	ItemRepository itemrepository;
 
-	@Autowired
-	listRepository listrepository;
+	// @Autowired
+	// listRepository listrepository;
 
 	/**
 	 * 
