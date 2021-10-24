@@ -224,13 +224,12 @@ public class RootController {
 		itemForm.clear();
 		return "root/list";
 	}
-
+//	リクエストデータの入力チェックをおこなう
+//	入力チェックNGの場合は、エラーメッセージを設定しユーザー編集画面へ
+//	入力チェックOKの場合は、入力データの内容をデータベースに反映する
+//	ユーザー一覧画面へ遷移する
 	/**
 	 * 
-	 * @param itemForm
-	 * @param bindingResult
-	 * @param model
-	 * @return
 	 */
 	@PostMapping("/edit")
 	public String edit(@ModelAttribute ItemForm itemForm, BindingResult bindingResult, Model model) {
