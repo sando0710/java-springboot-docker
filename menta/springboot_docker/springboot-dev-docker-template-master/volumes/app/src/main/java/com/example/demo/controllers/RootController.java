@@ -127,9 +127,11 @@ public class RootController {
 	// itemrepositoryで取得した情報をmodel.addAttributeで画面に渡す
 	@GetMapping("{id}/edit")
 	public String edit(@PathVariable String id, Model model) {
+		// (指定したアイテムのIDを検索) itemrepositoryから取得した主キーの情報をitemTableに格納
 		Optional<ItemForm> itemTable = itemrepository.findById(id);
+		// itemrepositoryで取得した情報をmodel.addAttributeで画面に渡す
 		model.addAttribute("itemTable", itemTable);
-		return "root/edit";
+		return "root/edit"; //returnで返す
 	}
 
 	/**
@@ -219,7 +221,7 @@ public class RootController {
 			return "root/list";
 		}
 		itemrepository.saveAndFlush(itemForm);
-		itemrepository.clear();
+		itemForm.clear();
 		return "root/list";
 	}
 
