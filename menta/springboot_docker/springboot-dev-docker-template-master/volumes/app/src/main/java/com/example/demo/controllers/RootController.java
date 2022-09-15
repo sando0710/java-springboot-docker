@@ -256,5 +256,4 @@ public class RootController {
 		return "root/list";
 	}
 }
- 
-アイウエオ
+

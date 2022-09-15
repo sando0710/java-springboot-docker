@@ -12,4 +12,4 @@ import com.example.demo.models.InquiryForm;
 public interface InquiryRepository extends JpaRepository<InquiryForm, String>{
 	Optional<InquiryForm> findById(String id);
 	List<InquiryForm> findAll();
-}
+} 
